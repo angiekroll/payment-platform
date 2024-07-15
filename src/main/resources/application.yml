@@ -1,0 +1,66 @@
+#  Server configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /payment-platform/v1
+
+
+# Spring configuration
+spring:
+  application:
+    name: payment-platform
+  datasource:
+    url: jdbc:h2:mem:db;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      settings:
+        web-allow-others: true
+      enabled: true
+      path: /h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  cache:
+    caffeine:
+      spec: maximumSize=100, expireAfterWrite=1m
+
+
+# External APIs Configuration
+external-apis:
+  fraud-api:
+    url: https://run.mocky.io/v3/20a81725-4de8-4dda-83c2-bcf763fa3fa4
+  bank-api:
+    url: https://run.mocky.io/v3/d13b9425-e449-44d8-b3d8-b0a432dd0b5c
+
+# failed scenarios
+#  fraud-api:
+#    url: https://run.mocky.io/v3/1413b96e-89ac-4936-8b61-491faac4d1a6
+#  bank-api:
+#    url: https://run.mocky.io/v3/32c3ab00-e3bd-4f20-b12c-604db6d20c58
+
+
+# Logger Configuration
+logging:
+  level:
+    com:
+      payu:
+        payment_platform: INFO
+
+
+# Health Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  health:
+    db:
+      enabled: false
+  #  endpoint:
+  #    health:
+  #      show-details: always
+  info:
+    git:
+      mode: full

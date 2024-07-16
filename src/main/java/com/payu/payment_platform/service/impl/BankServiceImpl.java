@@ -49,6 +49,6 @@ public class BankServiceImpl implements BankService {
     } catch (Exception e) {
       log.error("Error in feign client: " + e.getMessage());
     }
-    return true;
+    return Boolean.TRUE;
   }
 }

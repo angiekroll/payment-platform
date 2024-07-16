@@ -18,7 +18,10 @@ public enum NotificationCode {
   ERROR_GETTING_RESPONSE_BANK_SERVICE("An error occurred while establishing a connection to the bank external api", HttpStatus.SERVICE_UNAVAILABLE),
   REJECTED_BY_BANK("Rejected for bank", HttpStatus.BAD_REQUEST),
   PAYMENT_NOT_FOUND("Payment not found", HttpStatus.BAD_REQUEST),
-  ERROR_PROCESSING_DATA("Error processing data", HttpStatus.INTERNAL_SERVER_ERROR);
+  ERROR_PROCESSING_DATA("Error processing data", HttpStatus.INTERNAL_SERVER_ERROR),
+  ERROR_FRAUD_SERVICE_UNAVAILABLE("Error calling fraud service", HttpStatus.SERVICE_UNAVAILABLE),
+  REFUND_NOT_ALLOWED("Payment cannot be refunded as it is not in approved status.", HttpStatus.BAD_REQUEST);
+
 
 
   private final HttpStatus httpStatus;

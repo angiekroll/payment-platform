@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(name = "bank-api", url = "${external-apis.bank-api.url}")
 public interface BankClient {
 
-  @PostMapping("/bank")
+  @PostMapping()
   ResponseEntity<BankClientResponseDto> sendInfoToBank(PaymentRequestDto paymentRequestDto);
 
 }

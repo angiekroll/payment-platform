@@ -9,6 +9,7 @@ import com.payu.payment_platform.exception.PaymentPlatformException;
 import com.payu.payment_platform.external.apis.fraud.dto.FraudClientResponseDto;
 import com.payu.payment_platform.external.apis.fraud.FraudPreventionClient;
 import com.payu.payment_platform.service.FraudPreventionService;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class FraudPreventionServiceImpl implements FraudPreventionService {
     this.fraudPreventionClient = fraudPreventionClient;
   }
 
-  public void sendInfoToFraudPrevention(CustomerDto customerDto) {
+  public void sendInfoToFraudPrevention(CustomerDto customerDto) throws PaymentPlatformException {
     try {
       log.info("Calling fraud external API");
       ResponseEntity<FraudClientResponseDto> fraudClientResponseDTO = fraudPreventionClient.sendInfoToFraudPrevention(
@@ -45,8 +46,10 @@ public class FraudPreventionServiceImpl implements FraudPreventionService {
         throw new PaymentPlatformException(NotificationCode.REJECTED_BY_FRAUD);
       }
 
-    } catch (Exception e) {
-      log.error("Error in feign client: " + e.getMessage());
+    } catch (FeignException e) {
+      log.error("Error al llamar al servicio de fraude: " + e.getMessage());
+      throw new PaymentPlatformException(
+          NotificationCode.ERROR_FRAUD_SERVICE_UNAVAILABLE);
     }
 
   }

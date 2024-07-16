@@ -4,6 +4,7 @@
 package com.payu.payment_platform.service;
 
 import com.payu.payment_platform.dto.CustomerDto;
+import com.payu.payment_platform.exception.PaymentPlatformException;
 
 /**
  * @author angiekroll@gmail.com - Ángela Carolina Castillo Rodríguez.
@@ -12,6 +13,6 @@ import com.payu.payment_platform.dto.CustomerDto;
  */
 public interface FraudPreventionService {
 
-  void sendInfoToFraudPrevention(CustomerDto customerDto);
+  void sendInfoToFraudPrevention(CustomerDto customerDto) throws PaymentPlatformException;
 
 }

@@ -20,6 +20,7 @@ import com.payu.payment_platform.service.PaymentService;
 import java.time.LocalDateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author angiekroll@gmail.com - Ángela Carolina Castillo Rodríguez.
@@ -51,6 +52,8 @@ public class PaymentServiceImpl implements PaymentService {
   }
 
 
+  @Override
+  @Transactional
   public PaymentResponseDto processingPayment(PaymentRequestDto paymentRequestDto)
       throws PaymentPlatformException {
 

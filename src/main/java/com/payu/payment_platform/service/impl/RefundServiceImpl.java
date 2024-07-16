@@ -22,6 +22,7 @@ import com.payu.payment_platform.service.RefundService;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author angiekroll@gmail.com - Ángela Carolina Castillo Rodríguez.
@@ -44,17 +45,13 @@ public class RefundServiceImpl implements RefundService {
   }
 
   @Override
+  @Transactional
   public PaymentResponseDto fullPaymentRefund(RefundRequestDto refundRequestDto)
       throws PaymentPlatformException {
 
-    Optional<Payment> paymentOptional = paymentRepository.findById(
-        refundRequestDto.getTransactionId());
-
-    if (paymentOptional.isEmpty()) {
-      throw new PaymentPlatformException(NotificationCode.PAYMENT_NOT_FOUND);
-    }
-
-    Payment payment = paymentOptional.get();
+    log.info("Validate payment to refund");
+    Payment payment = validatePayment(paymentRepository.findById(
+        refundRequestDto.getTransactionId()));
 
     PaymentRequestDto paymentRequestDto = PaymentMapper.INSTANCE.paymentToPaymentRequestDto(payment);
 
@@ -64,13 +61,31 @@ public class RefundServiceImpl implements RefundService {
     paymentRequestDto.setCardDto(cardDto);
     paymentRequestDto.setCustomerDto(customerDto);
 
+    log.info("Sending refund request to bank");
     bankService.sendInfoToBank(paymentRequestDto);
 
     payment.setStatus(PaymentStatus.REFUNDED.toString());
 
+    log.info("Saving payment refund");
     paymentRepository.save(payment);
 
     return PaymentMapper.INSTANCE.paymentResponsetDtoToPayment(payment);
+  }
+
+  private static Payment validatePayment(Optional<Payment> paymentOptional)
+      throws PaymentPlatformException {
+    log.info("Consulting payment");
+    if (paymentOptional.isEmpty()) {
+      throw new PaymentPlatformException(NotificationCode.PAYMENT_NOT_FOUND);
+    }
+
+    Payment payment = paymentOptional.get();
+
+    log.info("Validating payment status");
+    if (!PaymentStatus.APPROVED.toString().equals(payment.getStatus())) {
+      throw new PaymentPlatformException(NotificationCode.REFUND_NOT_ALLOWED);
+    }
+    return payment;
   }
 
 }

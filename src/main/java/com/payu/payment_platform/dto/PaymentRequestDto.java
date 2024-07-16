@@ -5,6 +5,7 @@ package com.payu.payment_platform.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,8 +24,10 @@ import lombok.Data;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PaymentRequestDto {
 
+  @Valid
   private CustomerDto customerDto;
 
+  @Valid
   private CardDto cardDto;
 
   @NotNull(message = "The amount is required.")
@@ -34,6 +37,7 @@ public class PaymentRequestDto {
   @Size(max = 3, message = "The currency field cannot be longer than 3 characters.")
   private String currency;
 
+  @NotBlank(message = "The currency is required.")
   private String installmentsCount;
 
   private String description;

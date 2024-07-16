@@ -30,15 +30,16 @@ spring:
 # External APIs Configuration
 external-apis:
   fraud-api:
-    url: https://run.mocky.io/v3/20a81725-4de8-4dda-83c2-bcf763fa3fa4
+    url: http://demo8471017.mockable.io/fraud-ok
+
   bank-api:
-    url: https://run.mocky.io/v3/d13b9425-e449-44d8-b3d8-b0a432dd0b5c
+    url: https://demo8471017.mockable.io/bank-ok
 
 # failed scenarios
 #  fraud-api:
-#    url: https://run.mocky.io/v3/1413b96e-89ac-4936-8b61-491faac4d1a6
+#    url: https://demo8471017.mockable.io/fraud-failed
 #  bank-api:
-#    url: https://run.mocky.io/v3/32c3ab00-e3bd-4f20-b12c-604db6d20c58
+#    url: https://demo8471017.mockable.io/bank-failed
 
 
 # Logger Configuration

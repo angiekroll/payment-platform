@@ -14,7 +14,7 @@ import com.payu.payment_platform.exception.PaymentPlatformException;
  */
 public interface RefundService {
 
-  PaymentResponseDto fullPaymentRefund(RefundRequestDto refundRequestDto)
+  PaymentResponseDto fullPaymentRefund(Long paymentId)
       throws PaymentPlatformException;
 
 }

@@ -10,7 +10,6 @@ import com.payu.payment_platform.dto.CardDto;
 import com.payu.payment_platform.dto.CustomerDto;
 import com.payu.payment_platform.dto.PaymentRequestDto;
 import com.payu.payment_platform.dto.PaymentResponseDto;
-import com.payu.payment_platform.dto.RefundRequestDto;
 import com.payu.payment_platform.exception.PaymentPlatformException;
 import com.payu.payment_platform.mapper.CardMapper;
 import com.payu.payment_platform.mapper.CustomerMapper;
@@ -46,12 +45,11 @@ public class RefundServiceImpl implements RefundService {
 
   @Override
   @Transactional
-  public PaymentResponseDto fullPaymentRefund(RefundRequestDto refundRequestDto)
+  public PaymentResponseDto fullPaymentRefund(Long paymentId)
       throws PaymentPlatformException {
 
     log.info("Validate payment to refund");
-    Payment payment = validatePayment(paymentRepository.findById(
-        refundRequestDto.getTransactionId()));
+    Payment payment = validatePayment(paymentRepository.findById(paymentId));
 
     PaymentRequestDto paymentRequestDto = PaymentMapper.INSTANCE.paymentToPaymentRequestDto(payment);
 

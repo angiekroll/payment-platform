@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(name = "fraud-api", url = "${external-apis.fraud-api.url}", configuration = FeignConfig.class)
 public interface FraudPreventionClient {
 
-  @PostMapping("/fraud")
+  @PostMapping()
   ResponseEntity<FraudClientResponseDto> sendInfoToFraudPrevention(CustomerDto customerDto);
 
 }

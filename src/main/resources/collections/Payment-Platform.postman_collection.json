@@ -24,10 +24,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/payment-platform/v1/payments",
+					"raw": "http://52.87.241.152:8080/payment-platform/v1/payments",
+					"protocol": "http",
 					"host": [
-						"{{host}}"
+						"52",
+						"87",
+						"241",
+						"152"
 					],
+					"port": "8080",
 					"path": [
 						"payment-platform",
 						"v1",
@@ -40,7 +45,7 @@
 		{
 			"name": "FullRefund",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -52,15 +57,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/payment-platform/v1/payments/1",
+					"raw": "http://52.87.241.152:8080/payment-platform/v1/payments/3",
+					"protocol": "http",
 					"host": [
-						"{{host}}"
+						"52",
+						"87",
+						"241",
+						"152"
 					],
+					"port": "8080",
 					"path": [
 						"payment-platform",
 						"v1",
 						"payments",
-						"1"
+						"3"
 					]
 				}
 			},
@@ -84,10 +94,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/payment-platform/v1/actuator/health",
+					"raw": "http://52.87.241.152:8080/payment-platform/v1/actuator/health",
+					"protocol": "http",
 					"host": [
-						"{{host}}"
+						"52",
+						"87",
+						"241",
+						"152"
 					],
+					"port": "8080",
 					"path": [
 						"payment-platform",
 						"v1",
@@ -124,7 +139,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://demo8471017.mockable.io/fraud-ok",
+					"raw": "http://demo8471017.mockable.io/fraud-failed",
 					"protocol": "http",
 					"host": [
 						"demo8471017",
@@ -132,7 +147,7 @@
 						"io"
 					],
 					"path": [
-						"fraud-ok"
+						"fraud-failed"
 					]
 				}
 			},
@@ -144,8 +159,8 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://demo8471017.mockable.io/bank-ok",
-					"protocol": "https",
+					"raw": "http://demo8471017.mockable.io/bank-ok",
+					"protocol": "http",
 					"host": [
 						"demo8471017",
 						"mockable",

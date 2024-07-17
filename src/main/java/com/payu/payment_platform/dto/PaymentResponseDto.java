@@ -4,6 +4,7 @@
 package com.payu.payment_platform.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.math.BigDecimal;
@@ -24,7 +25,10 @@ public class PaymentResponseDto {
   private BigDecimal amount;
   private String currency;
   private String status;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private LocalDateTime createdAt;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private LocalDateTime updatedAt;
   private String description;
 
 }

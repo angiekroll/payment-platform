@@ -52,6 +52,8 @@ public class Payment {
   @Column(nullable = false)
   private LocalDateTime createdAt;
 
+  private LocalDateTime updatedAt;
+
   @Column(nullable = false)
   private String status;
 
@@ -59,8 +61,5 @@ public class Payment {
   @JoinColumn(name = "customer_id")
   private Customer customer;
 
-//  @ManyToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name = "card_id")
-//  private Card card;
 
 }

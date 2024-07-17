@@ -33,13 +33,13 @@ external-apis:
     url: http://demo8471017.mockable.io/fraud-ok
 
   bank-api:
-    url: https://demo8471017.mockable.io/bank-ok
+    url: http://demo8471017.mockable.io/bank-ok
 
 # failed scenarios
 #  fraud-api:
-#    url: https://demo8471017.mockable.io/fraud-failed
+#    url: http://demo8471017.mockable.io/fraud-failed
 #  bank-api:
-#    url: https://demo8471017.mockable.io/bank-failed
+#    url: http://demo8471017.mockable.io/bank-failed
 
 
 # Logger Configuration

@@ -4,24 +4,17 @@
 package com.payu.payment_platform.controller;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.payu.payment_platform.domain.Card;
 import com.payu.payment_platform.domain.Customer;
 import com.payu.payment_platform.domain.Payment;
-import com.payu.payment_platform.dto.CardDto;
-import com.payu.payment_platform.dto.CustomerDto;
-import com.payu.payment_platform.dto.PaymentRequestDto;
-import com.payu.payment_platform.dto.RefundRequestDto;
 import com.payu.payment_platform.repository.PaymentRepository;
-import com.payu.payment_platform.service.RefundService;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -54,7 +47,7 @@ class RefundControllerTest {
 
     Mockito.when(paymentRepository.findById(any())).thenReturn(buildPayment("APPROVED"));
 
-    mockMvc.perform(post("/payments/{paymentId}", 1L)
+    mockMvc.perform(put("/payments/{paymentId}", 1L)
             .contentType(MediaType.APPLICATION_JSON))
 
         .andExpect(status().isOk())
@@ -72,7 +65,7 @@ class RefundControllerTest {
 
     Mockito.when(paymentRepository.findById(any())).thenReturn(buildPayment("REJECTED"));
 
-    mockMvc.perform(post("/payments/{paymentId}", 1L)
+    mockMvc.perform(put("/payments/{paymentId}", 1L)
             .contentType(MediaType.APPLICATION_JSON))
 
         .andExpect(status().is4xxClientError());
@@ -85,7 +78,7 @@ class RefundControllerTest {
 
     Mockito.when(paymentRepository.findById(any())).thenReturn(Optional.empty());
 
-    mockMvc.perform(post("/payments/{paymentId}", 1L)
+    mockMvc.perform(put("/payments/{paymentId}", 1L)
             .contentType(MediaType.APPLICATION_JSON))
 
         .andExpect(status().is4xxClientError());

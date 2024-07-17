@@ -1,19 +1,31 @@
-## Payment Platform
+# Payment Platform
 
 This project is a payment platform for processing purchases with credit cards.
 ### Features.
 
-- `url local`: http://localhost:8080/payment-platform/v1
+- `url LOCAL`: http://localhost:8080/payment-platform/v1
+- `url AWS`: http://52.87.241.152:8080/payment-platform/v1
 - `DB`: H2, base de datos volátil.
 - `Url DB local`: http://localhost:8080/payment-platform/v1/h2/
+- `Url DB AWS`: http://52.87.241.152:8080/payment-platform/v1/h2/
 - `Context`: payment-platform
 - `Code building tool`: Gradle
 - `Framework`: Spring boot 3.3.1
 - `Language`: Java 17
+- `URL swagger LOCAL`: http://localhost:8080/payment-platform/v1/swagger-ui/index.html
+- `URL swagger AWS`: http://52.87.241.152:8080/payment-platform/v1/swagger-ui/index.html
+  
 
-### Available methods.
+# Available methods.
 
-- `Processing Payment: POST`: http://localhost:8080/payment-platform/v1/payments
+### - Processing Payment:
+
+LOCAL:
+- `POST`: http://localhost:8080/payment-platform/v1/payments
+
+AWS:
+- `POST`: http://52.87.241.152:8080/payment-platform/v1/payments
+
 
 Request:
 
@@ -54,7 +66,13 @@ Response success: Http-Code: 200
 }
 ```
 
-- `Refound Payment: POST`: http://localhost:8080/payment-platform/v1/payments/:paymentId
+### - Refound Payment:
+
+LOCAL:
+- `POST`: http://localhost:8080/payment-platform/v1/payments/:paymentId
+  
+AWS:
+- `Refound Payment: POST`: http://52.87.241.152:8080/payment-platform/v1/payments/:paymentId
 
 Request: N/A
 
@@ -72,25 +90,26 @@ Response success: Http-Code: 200
 ```
 
 
-### All endpoints:
+# ¿How to run the program?
 
+### STEPS IN CLOUD COMPUTING
+- From postman consume the following REST services:
+
+LOCAL:
 - `POST`: http://localhost:8080/payment-platform/v1/payments
 - `POST`: http://localhost:8080/payment-platform/v1/payments/:paymentId
 
-## ¿How to run the program?
+AWS:
+- `POST`: http://52.87.241.152:8080/payment-platform/v1/payments
+- `POST`: http://52.87.241.152:8080/payment-platform/v1/payments/:paymentId
 
-STEPS:
+The collection is located in the following project path:
 
-- Clone the project from the following path using the 'git
-  clone: https://github.com/angiekroll/payment-platform.git
-- Import the project from your IDE in this case intellij
-- Compile the project
-- Run
-- Tester Potsman
+```
+./src/main/resources/collections/Payment-Platform.postman_collection.json
+```
 
-### DOCKER:
-
-STEPS:
+### STEPS IN DOCKER:
 
 1. The application is deployed on Docker, Docker must be installed on the local machine and the
    following commands should be executed to create the image and deploy it on the container:
@@ -106,7 +125,17 @@ STEPS:
    must go to the following route: 
    - http://localhost:8080/payment-platform/v1/h2/
 
-## ¿How to connect to the DB?
+### STEPS IN LOCAL:
+
+- Clone the project from the following path using the 'git
+  clone: https://github.com/angiekroll/payment-platform.git
+- Import the project from your IDE in this case intellij
+- Compile the project
+- Run
+- Tester Potsman
+
+
+# ¿How to connect to the DB?
 
 - `JDBC`: jdbc:h2:mem:db
 - `User Name`: sa

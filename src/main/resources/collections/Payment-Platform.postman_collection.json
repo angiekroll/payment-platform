@@ -57,7 +57,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://52.87.241.152:8080/payment-platform/v1/payments/3",
+					"raw": "http://52.87.241.152:8080/payment-platform/v1/payments/1",
 					"protocol": "http",
 					"host": [
 						"52",
@@ -70,7 +70,7 @@
 						"payment-platform",
 						"v1",
 						"payments",
-						"3"
+						"1"
 					]
 				}
 			},

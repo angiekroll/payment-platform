@@ -54,7 +54,7 @@ Response success: Http-Code: 200
 }
 ```
 
-- `Refound Payment: POST`: http://localhost:8080/payment-platform/v1/payments/:paymentId
+- `Refound Payment: PUT`: http://localhost:8080/payment-platform/v1/payments/:paymentId
 
 Request: N/A
 
@@ -75,7 +75,7 @@ Response success: Http-Code: 200
 ### All endpoints:
 
 - `POST`: http://localhost:8080/payment-platform/v1/payments
-- `POST`: http://localhost:8080/payment-platform/v1/payments/:paymentId
+- `PUT`: http://localhost:8080/payment-platform/v1/payments/:paymentId
 
 ## ¿How to run the program?
 

@@ -21,7 +21,7 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,7 +51,7 @@ public class RefundController {
       @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
   })
 
-  @PostMapping("/{paymentId}")
+  @PutMapping("/{paymentId}")
   public ResponseEntity<PaymentResponseDto> fullRefund(
       @PathVariable @NotNull @Positive Long paymentId)
       throws PaymentPlatformException {

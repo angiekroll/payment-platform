@@ -18,6 +18,7 @@ import com.payu.payment_platform.repository.PaymentRepository;
 import com.payu.payment_platform.service.BankService;
 import com.payu.payment_platform.service.RefundService;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,7 @@ public class RefundServiceImpl implements RefundService {
     bankService.sendInfoToBank(paymentRequestDto);
 
     payment.setStatus(PaymentStatus.REFUNDED.toString());
+    payment.setUpdatedAt(LocalDateTime.now());
 
     log.info("Saving payment refund");
     paymentRepository.save(payment);

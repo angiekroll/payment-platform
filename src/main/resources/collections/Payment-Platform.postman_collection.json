@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "0dd74d54-f447-4f86-bf69-0cffbaea9a75",
+		"name": "PayU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4615353"
+	},
+	"item": [
+		{
+			"name": "ProcessingPayment",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 300,\n    \"currency\": \"COP\",\n    \"installments_count\": \"12\",\n    \"description\": \"Payment for services rendered\",\n    \"customer_dto\": {\n        \"first_name\": \"Angie\",\n        \"last_name\": \"Rodriguez Suarez\",\n        \"identification_type\": \"CC\",\n        \"identification\": \"1234\",\n        \"email\": \"angie.rodriguez@example.com\",\n        \"address\":\"\"\n    },\n    \"card_dto\": {\n        \"card_number\": \"4111111111111111\",\n        \"card_type\": \"CREDIT\",\n        \"expiration_date\": \"12/25\",\n        \"cvv\": \"123\",\n        \"card_holder\": \"Angie Rodriguez S.\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/payment-platform/v1/payments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payment-platform",
+						"v1",
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FullRefund",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/payment-platform/v1/payments/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payment-platform",
+						"v1",
+						"payments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HealthCheck",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/payment-platform/v1/actuator/health",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payment-platform",
+						"v1",
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FraudExternalApi-OK",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://demo8471017.mockable.io/fraud-ok",
+					"protocol": "http",
+					"host": [
+						"demo8471017",
+						"mockable",
+						"io"
+					],
+					"path": [
+						"fraud-ok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FraudExternalApi-FAIL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://demo8471017.mockable.io/fraud-ok",
+					"protocol": "http",
+					"host": [
+						"demo8471017",
+						"mockable",
+						"io"
+					],
+					"path": [
+						"fraud-ok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BankExternalApi-OK",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://demo8471017.mockable.io/bank-ok",
+					"protocol": "https",
+					"host": [
+						"demo8471017",
+						"mockable",
+						"io"
+					],
+					"path": [
+						"bank-ok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BankExternalApi-FAIL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://demo8471017.mockable.io/bank-failed",
+					"protocol": "http",
+					"host": [
+						"demo8471017",
+						"mockable",
+						"io"
+					],
+					"path": [
+						"bank-failed"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

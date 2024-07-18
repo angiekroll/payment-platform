@@ -20,7 +20,9 @@ public enum NotificationCode {
   PAYMENT_NOT_FOUND("Payment not found", HttpStatus.BAD_REQUEST),
   ERROR_PROCESSING_DATA("Error processing data", HttpStatus.INTERNAL_SERVER_ERROR),
   ERROR_FRAUD_SERVICE_UNAVAILABLE("Error calling fraud service", HttpStatus.SERVICE_UNAVAILABLE),
-  REFUND_NOT_ALLOWED("Payment cannot be refunded as it is not in approved status.", HttpStatus.BAD_REQUEST);
+  REFUND_NOT_ALLOWED("Payment cannot be refunded as it is not in approved status.", HttpStatus.BAD_REQUEST),
+
+  ERROR_BANK_SERVICE_UNAVAILABLE("Error calling bank service", HttpStatus.SERVICE_UNAVAILABLE);
 
 
 

@@ -9,6 +9,7 @@ import com.payu.payment_platform.exception.PaymentPlatformException;
 import com.payu.payment_platform.external.apis.bank.BankClient;
 import com.payu.payment_platform.external.apis.bank.dto.BankClientResponseDto;
 import com.payu.payment_platform.service.BankService;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,8 @@ public class BankServiceImpl implements BankService {
   }
 
   @Override
-  public Boolean sendInfoToBank(PaymentRequestDto paymentRequestDto) {
+  public Boolean sendInfoToBank(PaymentRequestDto paymentRequestDto)
+      throws PaymentPlatformException {
     try {
       log.info("Calling bank external API");
       ResponseEntity<BankClientResponseDto> bankClientResponseDto = bankClient.sendInfoToBank(
@@ -46,8 +48,10 @@ public class BankServiceImpl implements BankService {
         return false;
       }
 
-    } catch (Exception e) {
-      log.error("Error in feign client: " + e.getMessage());
+    }catch (FeignException e) {
+      log.error("Error al llamar al servicio de fraude: " + e.getMessage());
+      throw new PaymentPlatformException(
+          NotificationCode.ERROR_FRAUD_SERVICE_UNAVAILABLE);
     }
     return Boolean.TRUE;
   }

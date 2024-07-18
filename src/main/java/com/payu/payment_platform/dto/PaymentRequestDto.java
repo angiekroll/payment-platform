@@ -37,7 +37,7 @@ public class PaymentRequestDto {
   @Size(max = 3, message = "The currency field cannot be longer than 3 characters.")
   private String currency;
 
-  @NotBlank(message = "The currency is required.")
+  @NotBlank(message = "The installments count is required.")
   private String installmentsCount;
 
   private String description;

@@ -4,6 +4,7 @@
 package com.payu.payment_platform.service;
 
 import com.payu.payment_platform.dto.PaymentRequestDto;
+import com.payu.payment_platform.exception.PaymentPlatformException;
 
 /**
  * @author angiekroll@gmail.com - Ángela Carolina Castillo Rodríguez.
@@ -12,6 +13,6 @@ import com.payu.payment_platform.dto.PaymentRequestDto;
  */
 public interface BankService {
 
-  Boolean sendInfoToBank(PaymentRequestDto paymentRequestDto);
+  Boolean sendInfoToBank(PaymentRequestDto paymentRequestDto) throws PaymentPlatformException;
 
 }
